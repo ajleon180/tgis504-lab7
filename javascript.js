@@ -16,13 +16,13 @@ var url = "https://178.128.228.240:4000/sql?q=";
 var sqlQuery = "SELECT * FROM bird_sighting";
 function addPopup(feature, layer) {
     layer.bindPopup(
-        "<b>" + feature.properties.input_bird + "</b><br>" +
-        feature.properties.input_num + "</b><br>" +
-        feature.properties.input_date + "</b><br>" +
-        feature.properties.input_name + "</b><br>" +
-        feature.properties.input_photo + "</b><br>" +
-        feature.properties.input_video + "</b><br>" +
-        feature.properties.input_audio
+        "<b>Species of Bird:  </b>" + feature.properties.input_bird + "<br>" +
+        "<b>Number of Birds:  </b>" + feature.properties.input_num + "<br>" +
+        "<b>Entry Date:  </b>" + feature.properties.input_date + "<br>" +
+        "<b>User Name:  </b>" + feature.properties.input_name //+ "</b><br>" +
+        // feature.properties.input_photo + "</b><br>" +
+        // feature.properties.input_video + "</b><br>" +
+        // feature.properties.input_audio
     );
 }
 
@@ -55,10 +55,10 @@ function createFormPopup() {
         'Number of Birds:<br><input type="int" id="input_num"><br>' +
         'Date of Sighting:<br><input type="date" id="input_date"><br>' +
         'User\'s Name:<br><input type="text" id="input_name"><br>' +
-        //I added inputs for users to add audio, video, and photos of the birds.  I tried to get the buttons to appear on the same line as the label, but was unsuccessful.
-        'Take a Photo:<input type="file" id="input_photo" capture="environment" accept="image/*"><br>' +
-        'Take a Video<input type="file" id="input_video" capture="environment" accept="video/*"><br>' +
-        'Take an Audio Recording:<br><input type="file" id="input_audio" capture="environment" accept="audio/*"><br>' +
+        //I originallu planned to add buttons for users to add videos, audio, and photos of birds, but it sounds like the database does not support those file types.  I have commented out the buttons and future references to video, audio, and photos in the javascript.  I have left the columns in my table for posterity.
+        // 'Take a Photo:<input type="file" id="input_photo" capture="environment" accept="image/*"><br>' +
+        // 'Take a Video<input type="file" id="input_video" capture="environment" accept="video/*"><br>' +
+        // 'Take an Audio Recording:<br><input type="file" id="input_audio" capture="environment" accept="audio/*"><br>' +
         '<input type="button" value="Submit" id="submit">' + 
         '</form>'
     drawnItems.bindPopup(popupContent).openPopup();
@@ -78,9 +78,9 @@ function setData(e) {
         var enteredBirdNum = document.getElementById("input_num").value;
         var enteredDate = document.getElementById("input_date").value;
         var enteredUsername = document.getElementById("input_name").value;
-        var enteredPhoto = document.getElementById("input_photo").value;
-        var enteredVideo = document.getElementById("input_video").value;
-        var enteredAudio = document.getElementById("input_audio").value;
+        // var enteredPhoto = document.getElementById("input_photo").value;
+        // var enteredVideo = document.getElementById("input_video").value;
+        // var enteredAudio = document.getElementById("input_audio").value;
 
         // For each drawn layer
         drawnItems.eachLayer(function(layer) {
@@ -94,10 +94,10 @@ function setData(e) {
                 enteredBird + "', '" +
                 enteredBirdNum + "', '" +
                 enteredDate + "', '" +
-                enteredUsername + "', '" +
-                enteredPhoto + "', '" +
-                enteredVideo + "', '" +
-                enteredAudio + "');";
+                enteredUsername + "', '" + "');";
+                // enteredPhoto + "', '" +
+                // enteredVideo + "', '" +
+                // enteredAudio + "');";
             console.log(sql);
 
             // Send the data
@@ -118,9 +118,9 @@ function setData(e) {
             newData.properties.input_num = enteredBirdNum;
             newData.properties.input_date = enteredDate;
             newData.properties.input_name = enteredUsername;
-            newData.properties.input_photo = enteredPhoto;
-            newData.properties.input_video = enteredVideo;
-            newData.properties.input_audio = enteredAudio;
+            // newData.properties.input_photo = enteredPhoto;
+            // newData.properties.input_video = enteredVideo;
+            // newData.properties.input_audio = enteredAudio;
             L.geoJSON(newData, {onEachFeature: addPopup}).addTo(tableData);
 
         });
