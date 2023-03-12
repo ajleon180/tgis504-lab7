@@ -1,0 +1,58 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Add styling for the information box that will appear on the bottom of the map. */
+.content{
+  background-color: #32401d;
+  color: white;
+  width: 50%;
+  min-height: 5vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  text-align: center;
+  line-height: 25px;
+  font-size: 16px;
+  font-family: sans-serif;
+  border: none;
+  overflow: hidden;
+  display: none;
+  position: absolute;
+  bottom: 0px;
+  right:0px;
+  z-index: 1000;
+}
+
+/* Added styling for the popup to add some separation between the elements in the list. */
+#popup{
+  line-height: 2;
+}
+
+.collapsible{
+  background-color: #566e31;
+  color: white;
+  width: 100%;
+  cursor: pointer;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  padding-left: 8vh;
+  text-align: left;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: bold;
+  z-index: 1000;
+  position: absolute;
+  bottom: 0px;
+  border: none;
+}
+
+.active, .collapsible:hover{
+  background-color: #4c6329;
+}
